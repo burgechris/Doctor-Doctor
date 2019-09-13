@@ -15,21 +15,22 @@ $(document).ready(function() {
     let promise = docSearch.getDoctor(name, condition);
 
     let docName = [];
-    let docAddress = [];
-    let docPhone = [];
+    let address = [];
+    let phone = [];
     let newPatients = [];
     console.log(docName);
-    console.log(docPhone);
-    console.log(newPatients);
+    // console.log(phone);
+    // console.log(newPatients);
     promise.then(function(response) {
       let body = JSON.parse(response);
       for (var i = 0; i < body.data[0].practices.length; i++) {
+
         docName.push(body.data[0].practices[i].name)
-        docPhone.push(body.data[0].practices[i].phones[0])
-        newPatients.push(body.data[0].practices[i].accepts_new_patients)
+        // phone.push(body.data[0].practices[i].phones[0])
+        // newPatients.push(body.data[0].practices[i].accepts_new_patients)
 
       }
-      $('.firstName').text(body.data[i])
+      $('.firstName').text(body.data[0].practices[i].name[i])
     }, function(error) {
       $('.error').text(`There was an error processing your request: ${error.message}`);
     });
