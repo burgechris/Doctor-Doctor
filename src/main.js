@@ -14,10 +14,15 @@ $(document).ready(function() {
     let docSearch = new BetterDoctor();
     let promise = docSearch.getDoctor(name, condition);
 
+    let doctors = [];
+    console.log(doctors);
     promise.then(function(response) {
       let body = JSON.parse(response);
-      console.log(body.data[0].profile.first_name);
-      $('.name').text(body.data[0].profile.first_name)
+      for (var i = 0; i < body.data.length; i++) {
+        doctors.push(body.data[i].practices)
+        // console.log(body.data[i].practices);
+      }
+      $('.firstName').append(body.data[0].practice[i].name)
     }, function(error) {
       $('.error').text(`There was an error processing your request: ${error.message}`);
     });
