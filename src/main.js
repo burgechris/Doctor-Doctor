@@ -14,26 +14,16 @@ $(document).ready(function() {
     let docSearch = new BetterDoctor();
     let promise = docSearch.getDoctor(name, condition);
 
-    let docName = [];
-    // let address = [];
-    // let phone = [];
-    // let newPatients = [];
-    console.log(docName);
     promise.then(function(response) {
-      let body = JSON.parse(response);
-      for (var i = 0; i < body.data[i].length; i++) {
-        for (var j = 0; i < body.data[i].profile[j].length; i++) {
-          docName.push(body.data[i].profile[j].first_name)
-        }
+      const body = JSON.parse(response);
 
-        // phone.push(body.data[i].practices[i].phones[i])
-        // newPatients.push(body.data[i].practices[i].accepts_new_patients)
+      for (var i = 0; i < body.data.length; i++) {
+        $('.firstName').text(body.data[i].profile.first_name)
+        $('.lastName').text(body.data[i].profile.last_name)
+        $('.title').text(body.data[i].profile.title)
 
       }
-      $('.firstName').text(body.data[i].profile[j].first_name);
-      // ${'.address'}.text(body.data[i].practices[i].visit_address)
-      // $('.phone').text(body.data[i].practices[i].phones[i]);
-      // $('.newPatients').text(body.data[i].practices[i].accepts_new_patients)
+
     }, function(error) {
       $('.error').text(`There was an error processing your request: ${error.message}`);
     });
