@@ -16,11 +16,19 @@ $(document).ready(function() {
 
     promise.then(function(response) {
       const body = JSON.parse(response);
-
       for (var i = 0; i < body.data.length; i++) {
-        $('.firstName').text(body.data[i].profile.first_name)
-        $('.lastName').text(body.data[i].profile.last_name)
-        $('.title').text(body.data[i].profile.title)
+        $('.results').append(
+          `<div class=" results">
+            <div class="card">
+              <h5 class="name"></h5>
+              <div class="address"></div>
+              <div class="phoneNumber"></div>
+              <div class="website"></div>
+              <div class="new"></div>
+            </div>
+          </div>`)
+
+          $('.name').text(`${body.data[i].profile.first_name}`)
 
       }
 
