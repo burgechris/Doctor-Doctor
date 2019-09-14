@@ -5,14 +5,15 @@ import './styles.css';
 import { BetterDoctor } from './doctor';
 
 $(document).ready(function() {
-  $('#doctorSearch').submit(function(event) {
+  $('#searchMe').submit(function(event) {
     event.preventDefault();
-    let name = $('#docName').val();
-    let condition = $('#cond').val();
+    $('.results').text('');
 
+    let name = $('#docName').val();
+    let symptom = $('#symptom').val();
 
     let docSearch = new BetterDoctor();
-    let promise = docSearch.getDoctor(name, condition);
+    let promise = docSearch.getDoctor(name, symptom);
 
     promise.then(function(response) {
       const body = JSON.parse(response);
@@ -31,21 +32,23 @@ $(document).ready(function() {
         let phone = body.data[i].practices[0].phones[0].number;
         let newPatients;
         if (body.data[i].practices.accepts_new_patients === true) {
-          newPatients = 'yes';
+          newPatients = 'Currently accepting new patients!';
         } else {
-          newPatients = 'no';
+          newPatients = 'Sorry, not accepting new patients at this time.';
         }
 
           doctorList.push(
-            `<div class=" results">
-            <div class="card">
-            <h5 class="name">Doctor: ${firstName} ${lastName} ${title}</h5>
-            <div class="address">Address:<br>${street}<br>${city}, ${state} ${zip}</div>
-            <div class="phoneNumber">Phone: ${phone}</div>
-            <div class="website">Website: </div>
-            <div class="new">Accepting New Patients: ${newPatients}</div>
-            </div>
+            `<div class="card">
+            <h5 id="name">${firstName} ${lastName} ${title}</h5>
+            <div id="address">Address:<br>${street}<br>${city}, ${state} ${zip}</div>
+            <div id="phoneNumber">Phone: ${phone}</div>
+            <div id="website">Website: </div>
+            <div id="new">${newPatients}</div>
             </div>`);
+      }
+
+      for (var x = 0; x < doctorList.length; x++) {
+        $('.results').append(doctorList[x]).show();
       }
 
     }, function(error) {

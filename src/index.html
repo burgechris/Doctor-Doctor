@@ -8,27 +8,20 @@
     <div class="container">
       <h1>Need A Doctor?</h1>
 
-      <form id="doctorSearch">
-        <label for="doctorName" id="doctorName">Doctor Name</label>
-        <input type="text" name="docName" id="docName">
-
-        <label for="condition" id="condition">What Is Wrong?</label>
-        <input type="text" name="cond" id="cond">
-
-        <button type="submit" class="btn btn-primary" name="button">Search</button>
+      <form id="searchMe">
+        <div class="row">
+          <input type="text" class="form-control" name="search" id="docName" placeholder="Doctor name...">
+          <input type="text" class="form-control" name="search" id="symptom" placeholder="Symptom...">
+        </div>
+        <div class="row">
+          <button type="submit" class="btn btn-primary" name="button">Search</button>
+        </div>
 
       </form>
 
-      <div class=" results">
-        <div class="card">
-          <h5 class="name"></h5>
-          <div class="address"></div>
-          <div class="phoneNumber"></div>
-          <div class="website"></div>
-          <div class="new"></div>
-        </div>
-      </div>
+      <div class="results hidden"></div>
 
+      </div>
     </div>
   </body>
 </html>
