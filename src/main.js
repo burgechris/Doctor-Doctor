@@ -30,20 +30,28 @@ $(document).ready(function() {
         let state = body.data[i].practices[0].visit_address.state;
         let zip = body.data[i].practices[0].visit_address.zip;
         let phone = body.data[i].practices[0].phones[0].number;
+        let website;
+        if (body.data[i].practices[0].website) {
+          website = body.data[i].practices[0].website;
+        } else {
+          website = 'No website listed'
+        }
         let newPatients;
-        if (body.data[i].practices.accepts_new_patients === true) {
+        if (body.data[i].practices[0].accepts_new_patients) {
           newPatients = 'Currently accepting new patients!';
         } else {
           newPatients = 'Sorry, not accepting new patients at this time.';
         }
 
           doctorList.push(
-            `<div class="card">
-            <h5 id="name">${firstName} ${lastName} ${title}</h5>
-            <div id="address">Address:<br>${street}<br>${city}, ${state} ${zip}</div>
-            <div id="phoneNumber">Phone: ${phone}</div>
-            <div id="website">Website: </div>
-            <div id="new">${newPatients}</div>
+            `<div class="card text-white bg-primary w-75">
+            <div card-body>
+            <h4 class="card-title" id="name">${firstName} ${lastName} ${title}</h4>
+            <h6 id="phoneNumber">Phone: ${phone}</h6>
+            <p id="address">Address:<br>${street}<br>${city}, ${state} ${zip}</p>
+            <a id="website">Website: ${website}</a>
+            <p class="card-text"><small class="text-muted" id="new">${newPatients}</p></small>
+            </div>
             </div>`);
       }
 

@@ -4,9 +4,31 @@
 }
 
 .card {
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 button {
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-left: auto;
+}
+
+.form-control {
+  margin-top: 6px;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: 'Manjari', sans-serif;
+  margin-top: 25px;
+  margin-bottom: 30px;
+  display: block;
+  text-align: center;
+}
+
+#searchMe {
+  text-align: right;
+}
+
+#new {
+  color: green;
 }
