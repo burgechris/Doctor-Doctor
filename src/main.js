@@ -21,33 +21,31 @@ $(document).ready(function() {
       console.log(doctorList);
 
       for (var i = 0; i < body.data.length; i++) {
-        doctorList.push(body.data[i].profile.first_name);
-        doctorList.push(body.data[i].profile.last_name);
-        doctorList.push(body.data[i].profile.title);
-        doctorList.push(body.data[i].practices[0].visit_address.street);
-        doctorList.push(body.data[i].practices[0].visit_address.city);
-        doctorList.push(body.data[i].practices[0].visit_address.state);
-        doctorList.push(body.data[i].practices[0].visit_address.zip);
-        doctorList.push(body.data[i].practices[0].phones[0].number);
+        let firstName = body.data[i].profile.first_name;
+        let lastName = body.data[i].profile.last_name;
+        let title = body.data[i].profile.title;
+        let street = body.data[i].practices[0].visit_address.street;
+        let city = body.data[i].practices[0].visit_address.city;
+        let state = body.data[i].practices[0].visit_address.state;
+        let zip = body.data[i].practices[0].visit_address.zip;
+        let phone = body.data[i].practices[0].phones[0].number;
+        let newPatients;
+        if (body.data[i].practices.accepts_new_patients === true) {
+          newPatients = 'yes';
+        } else {
+          newPatients = 'no';
+        }
 
-        // if (body.data[i].practices.accepts_new_patients === true) {
-        //   return 'yes';
-        // } else {
-        //   return 'no';
-        // }
-        //
-        // $('.name').text(`${firstName} ${lastName} ${title}`);
-        //
-        // $('.results').append(
-        //   `<div class=" results">
-        //   <div class="card">
-        //   <h5 class="name"></h5>
-        //   <div class="address"></div>
-        //   <div class="phoneNumber"></div>
-        //   <div class="website"></div>
-        //   <div class="new"></div>
-        //   </div>
-        //   </div>`)
+          doctorList.push(
+            `<div class=" results">
+            <div class="card">
+            <h5 class="name">Doctor: ${firstName} ${lastName} ${title}</h5>
+            <div class="address">Address:<br>${street}<br>${city}, ${state} ${zip}</div>
+            <div class="phoneNumber">Phone: ${phone}</div>
+            <div class="website">Website: </div>
+            <div class="new">Accepting New Patients: ${newPatients}</div>
+            </div>
+            </div>`);
       }
 
     }, function(error) {
