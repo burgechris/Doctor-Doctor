@@ -16,31 +16,38 @@ $(document).ready(function() {
 
     promise.then(function(response) {
       const body = JSON.parse(response);
-      // $('.results').append(
-        //   `<div class=" results">
-        //     <div class="card">
-        //       <h5 class="name"></h5>
-        //       <div class="address"></div>
-        //       <div class="phoneNumber"></div>
-        //       <div class="website"></div>
-        //       <div class="new"></div>
-        //     </div>
-        //   </div>`)
-    
+
+      let doctorList = [];
+      console.log(doctorList);
+
       for (var i = 0; i < body.data.length; i++) {
-        let firstName = body.data[i].profile.first_name;
-        let lastName = body.data[i].profile.last_name;
-        let title = body.data[i].profile.title;
+        doctorList.push(body.data[i].profile.first_name);
+        doctorList.push(body.data[i].profile.last_name);
+        doctorList.push(body.data[i].profile.title);
+        doctorList.push(body.data[i].practices[0].visit_address.street);
+        doctorList.push(body.data[i].practices[0].visit_address.city);
+        doctorList.push(body.data[i].practices[0].visit_address.state);
+        doctorList.push(body.data[i].practices[0].visit_address.zip);
+        doctorList.push(body.data[i].practices[0].phones[0].number);
 
-        for (var j = 0; j < body.data[i].practices.length; j++) {
-          let street = body.data[i].practices[j].visit_address.street;
-          let city = body.data[i].practices[j].visit_address.city;
-          let state = body.data[i].practices[j].visit_address.state;
-          let zip = body.data[i].practices[j].visit_address.zip;
-          let phone = body.data[i].practices[j].phones.number;
-        }
-
-
+        // if (body.data[i].practices.accepts_new_patients === true) {
+        //   return 'yes';
+        // } else {
+        //   return 'no';
+        // }
+        //
+        // $('.name').text(`${firstName} ${lastName} ${title}`);
+        //
+        // $('.results').append(
+        //   `<div class=" results">
+        //   <div class="card">
+        //   <h5 class="name"></h5>
+        //   <div class="address"></div>
+        //   <div class="phoneNumber"></div>
+        //   <div class="website"></div>
+        //   <div class="new"></div>
+        //   </div>
+        //   </div>`)
       }
 
     }, function(error) {
