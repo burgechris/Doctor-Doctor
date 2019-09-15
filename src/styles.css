@@ -17,7 +17,7 @@ button {
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 70px;
   font-family: 'Manjari', sans-serif;
   margin-top: 25px;
   margin-bottom: 30px;
@@ -25,10 +25,30 @@ h1 {
   text-align: center;
 }
 
-#searchMe {
-  text-align: right;
+/* form {
+  direction: rtl;
+}
+input {
+  display: block;
+  direction: ltr;
+} */
+
+.noResult {
+  display: none;
 }
 
-#new {
-  color: green;
+/* body {
+  text-align: center;
+} */
+
+.card-text {
+  padding-left: 15px;
+}
+
+h3 {
+  padding-top: 15px;
+}
+
+small {
+  padding-bottom: 30px;
 }

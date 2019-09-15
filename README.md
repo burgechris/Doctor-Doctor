@@ -21,14 +21,13 @@ This website calls data from the BetterDoctor API and returns a list of doctors 
 
 | Behavior | Input | Output |
 | ------------- |:-------------:| -----:|
-||||
-||||
-||||
+|Notifies user if the search didn't have results|'sdfasdfs'|'Please try a new search...'|
+|Results are displayed when user searches by name|'Alison'|'Up to 10 results are displayed'|
+|Results are displayed when user searches by symptom/keyword|'Toothache'|'Up to 10 results are displayed'|
 
 ## Known Bugs
 
 None
-
 
 ## Technologies Used
 
