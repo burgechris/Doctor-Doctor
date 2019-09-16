@@ -20,8 +20,6 @@ $(document).ready(function() {
       const body = JSON.parse(response);
 
       let doctorList = [];
-      console.log(doctorList);
-
       if (body.data.length === 0) {
         $(".noResult").show();
       } else {
@@ -34,6 +32,7 @@ $(document).ready(function() {
           let state = body.data[i].practices[0].visit_address.state;
           let zip = body.data[i].practices[0].visit_address.zip;
           let phone = body.data[i].practices[0].phones[0].number;
+          let bio = body.data[i].profile.bio;
           let website;
           if (body.data[i].practices[0].website) {
             website = body.data[i].practices[0].website;
@@ -48,13 +47,14 @@ $(document).ready(function() {
           }
 
           doctorList.push(
-            `<div class="card text-white bg-primary">
+            `<div class="card text-white">
             <div card-body>
             <h3 class="card-text card-title" id="name">${firstName} ${lastName} ${title}</h3>
             <h6 class="card-text" id="phoneNumber">Phone: ${phone}</h6>
             <p class="card-text" id="address">Address:<br>${street}<br>${city}, ${state} ${zip}</p>
             <a class="card-text" id="website">Website: ${website}</a>
-            <p class="card-text"><small class="text-green" id="new">${newPatients}</p></small>
+            <p class="card-text" id="bio">Bio: ${bio}</p>
+            <p class="card-text"><medium id="new">${newPatients}</p></medium>
             </div>
             </div>`);
           }
